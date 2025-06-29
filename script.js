@@ -51,7 +51,13 @@ function showSection(sectionId) {
         if (targetSection) {
             targetSection.classList.remove('hidden');
         } else {
-            throw new Error(`Section with id "${sectionId}" not found`);
+            console.error(`Section with id "${sectionId}" not found`);
+            showError(`Page not found: ${sectionId}`);
+            // Fallback to home section
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+                homeSection.classList.remove('hidden');
+            }
         }
     } catch (error) {
         console.error('Error showing section:', error);
@@ -91,6 +97,10 @@ function handleFormSubmit(form) {
         
         // Reset form
         form.reset();
+        
+        // Clear any previous error messages
+        const existingErrors = document.querySelectorAll('.error');
+        existingErrors.forEach(error => error.remove());
         
     } catch (error) {
         console.error('Error submitting form:', error);

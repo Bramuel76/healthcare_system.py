@@ -98,6 +98,15 @@ button:hover {
     background: #2980b9;
 }
 
+button:active {
+    transform: translateY(1px);
+}
+
+button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
 /* Form styles */
 form {
     display: flex;
